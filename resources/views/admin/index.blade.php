@@ -40,6 +40,13 @@
         <div class="page-container">
             @include('admin.layouts.menu-sidebar')
             @include('admin.layouts.header')
+            <div class="main-content">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        @yield('content')
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <!-- Jquery JS-->
