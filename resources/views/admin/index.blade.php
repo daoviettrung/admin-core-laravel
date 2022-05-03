@@ -32,6 +32,7 @@
 
     <!-- Main CSS-->
     <link href="{{ asset('assets/admin/css/theme.css') }}" rel="stylesheet" media="all">
+    <link href="{{ asset('assets/admin/css/custom.css') }}" rel="stylesheet" media="all">
     @yield('style')
 </head>
 
@@ -79,6 +80,8 @@
             $('#logout-form').submit();
         });
     </script>
+
+    @yield('script')
 </body>
 
 </html>

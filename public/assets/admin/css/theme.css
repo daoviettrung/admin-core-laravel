@@ -4513,7 +4513,6 @@ section {
     -webkit-border-bottom-left-radius: 3px;
     -moz-border-radius-bottomleft: 3px;
     border-bottom-left-radius: 3px;
-    vertical-align: top;
 }
 
 .table-data2.table tbody tr td:first-child .au-checkbox {
@@ -4614,10 +4613,8 @@ section {
     display: -ms-flexbox;
     display: flex;
     -webkit-box-pack: end;
-    -webkit-justify-content: flex-end;
     -moz-box-pack: end;
     -ms-flex-pack: end;
-    justify-content: flex-end;
 }
 
 .table-data-feature .item {

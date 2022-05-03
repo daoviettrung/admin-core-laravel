@@ -14,7 +14,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('admin.pages.category.index');
+        $category = Category::all();
+        return view('admin.pages.category.index',compact('category'));
     }
 
     /**
@@ -35,7 +36,19 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $category = new Category();
+        $category->name = $request->name;
+        $category->slug = $request->slug;
+        $category->description = $request->description;
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $ext = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $ext;
+            $file->move('assets/uploads/category', $filename);
+            $category->image = $filename;
+        }
+        $category->save();
+        return redirect('category/create')->with('success', 'Added successfully');
     }
 
     /**
