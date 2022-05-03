@@ -42,6 +42,10 @@ class CategoryController extends Controller
         $category->description = $request->description;
         if ($request->hasFile('image')) {
             $file = $request->file('image');
+            if($file->getSize() > 300000){
+                $errors = ['Size is too big'];
+                return view('admin.pages.category.add', compact('errors'));
+            }
             $ext = $file->getClientOriginalExtension();
             $filename = time() . '.' . $ext;
             $file->move('assets/uploads/category', $filename);

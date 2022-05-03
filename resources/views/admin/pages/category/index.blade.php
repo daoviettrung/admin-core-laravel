@@ -24,14 +24,14 @@
                         @foreach ($category as $cate)
                             <tr class="tr-shadow">
                                 <td>
-                                    <span class="status--process">{{ $cate->name }}</span>
+                                    {{ $cate->name }}
                                 </td>
                                 <td>
                                     <img src="{{ asset('assets/uploads/category/' . $cate->image) }}" alt="Image here"
                                         class="image-custom"></td>
                                 </td>
                                 <td>
-                                    <span class="status--process">{{ $cate->description }}</span>
+                                   {{ $cate->description }}
                                 </td>
                                 <td>
                                     <div class="table-data-feature">
