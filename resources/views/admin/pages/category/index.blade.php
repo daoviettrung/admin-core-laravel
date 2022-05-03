@@ -43,7 +43,7 @@
                                             title="Edit">
                                             <i class="zmdi zmdi-edit"></i>
                                         </button>
-                                        <form class="mt-1" method="POST" action="{{ url('category/' . $cate->id) }}">
+                                        <form method="POST" action="{{ url('category/' . $cate->id) }}">
                                             @method('DELETE')
                                             @csrf
                                             <button onclick="return confirm('Are you sure you want to delete?')" class="item" data-toggle="tooltip" data-placement="top"
