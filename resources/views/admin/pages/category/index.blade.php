@@ -14,6 +14,7 @@
                 <table class="table table-data2">
                     <thead>
                         <tr>
+                            <th>Stt</th>
                             <th>Name</th>
                             <th>Image</th>
                             <th>Description</th>
@@ -23,6 +24,9 @@
                     <tbody>
                         @foreach ($category as $cate)
                             <tr class="tr-shadow">
+                                <td>
+                                    {{ $cate->id }}
+                                </td>
                                 <td>
                                     {{ $cate->name }}
                                 </td>
@@ -39,10 +43,12 @@
                                             title="Edit">
                                             <i class="zmdi zmdi-edit"></i>
                                         </button>
-                                        <button class="item" data-toggle="tooltip" data-placement="top"
-                                            title="Delete">
-                                            <i class="zmdi zmdi-delete"></i>
-                                        </button>
+                                        <form class="mt-1" method="POST" action="{{ url('category/' . $cate->id) }}">
+                                            @method('DELETE')
+                                            @csrf
+                                            <button onclick="return confirm('Are you sure you want to delete?')" class="item" data-toggle="tooltip" data-placement="top"
+                                            title="Delete" type="submit"><i class="zmdi zmdi-delete"></i></button>
+                                        </form>
                                     </div>
                                 </td>
                             </tr>

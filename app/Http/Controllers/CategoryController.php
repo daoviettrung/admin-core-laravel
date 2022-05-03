@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class CategoryController extends Controller
 {
@@ -15,7 +16,7 @@ class CategoryController extends Controller
     public function index()
     {
         $category = Category::all();
-        return view('admin.pages.category.index',compact('category'));
+        return view('admin.pages.category.index', compact('category'));
     }
 
     /**
@@ -36,16 +37,15 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        Validator::make($request->all(), [
+            'image' => 'max:300',
+        ])->validate();
         $category = new Category();
         $category->name = $request->name;
         $category->slug = $request->slug;
         $category->description = $request->description;
         if ($request->hasFile('image')) {
             $file = $request->file('image');
-            if($file->getSize() > 300000){
-                $errors = ['Size is too big'];
-                return view('admin.pages.category.add', compact('errors'));
-            }
             $ext = $file->getClientOriginalExtension();
             $filename = time() . '.' . $ext;
             $file->move('assets/uploads/category', $filename);
