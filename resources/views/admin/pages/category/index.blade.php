@@ -32,10 +32,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($category as $cate)
+                        @foreach ($category as $key => $cate)
                             <tr class="tr-shadow">
                                 <td>
-                                    {{ $cate->id }}
+                                    {{ ++$key }}
                                 </td>
                                 <td>
                                     {{ $cate->name }}

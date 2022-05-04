@@ -36,7 +36,7 @@
     @yield('style')
 </head>
 
-<body class="animsition">
+<body class="">
     <div class="page-wrapper">
         <div class="page-container">
             @include('admin.layouts.menu-sidebar')
@@ -96,6 +96,11 @@
     <script src="{{ asset('assets/admin/js/main.js') }}"></script>
 
     <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
         // logout
         $("#logout").click(function() {
             $('#logout-form').submit();

@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,11 +18,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('auth.login');
 });
-
-Route::get('/dashboard', function () {
-    return view('admin.index');
-})->middleware(['auth'])->name('dashboard');
-
-Route::resource('category', CategoryController::class);
+Route::prefix('dashboard')->middleware(['auth'])->group(function () {
+    Route::get('/', [DashBoardController::class, 'index']);
+    Route::POST('/cache-clear', [DashBoardController::class, 'cacheClear']);
+});
+Route::resource('category', CategoryController::class)->middleware(['auth']);
 
 require __DIR__.'/auth.php';

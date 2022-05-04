@@ -15,3 +15,11 @@
 .main-content nav{
     float: right;
 }
+
+.au-input{
+    border: 1px solid black;
+}
+
+.sufee-alert{
+    display: none;
+}
