@@ -2,3 +2,16 @@
     height: 6rem;
     width: 40%;
 }
+
+#tool{
+    display: flex;
+}
+
+.au-btn--submit{
+    text-transform: uppercase;
+    color: white;
+}
+
+.main-content nav{
+    float: right;
+}

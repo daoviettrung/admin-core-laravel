@@ -806,7 +806,7 @@ section {
 }
 
 .au-input--xl {
-    min-width: 935px;
+    min-width: 400px;
 }
 
 @media (max-width: 1600px) {
@@ -1234,24 +1234,6 @@ section {
     }
 }
 
-.header-wrap {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-    -moz-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-pack: justify;
-    -webkit-justify-content: space-between;
-    -moz-box-pack: justify;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-}
-
 @media (min-width: 992px) and (max-width: 1199px) {
     .header-wrap .account-item > .content {
         display: none;
@@ -1287,16 +1269,8 @@ section {
 }
 
 .header-button {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-    -moz-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
+    justify-content: flex-end;
 }
 
 @media (max-width: 991px) {
@@ -4564,16 +4538,6 @@ section {
 }
 
 .table-data__tool {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: justify;
-    -webkit-justify-content: space-between;
-    -moz-box-pack: justify;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
     margin-bottom: 28px;
 }
 
@@ -4583,6 +4547,10 @@ section {
 
 .table-data__tool .table-data__tool-right > button {
     margin-right: 12px;
+}
+
+.table-data__tool-right{
+    float: right;
 }
 
 @media (max-width: 991px) {

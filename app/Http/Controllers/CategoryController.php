@@ -6,6 +6,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\File; 
+use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
@@ -14,9 +15,16 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $category = Category::all();
+        if(!empty($request->search)){
+            $category = DB::table('category')
+                ->where('name', 'like', '%'.$request->search.'%')
+                ->simplePaginate(10);
+        }
+        else{
+            $category = DB::table('category')->simplePaginate(10);
+        }
         return view('admin.pages.category.index', compact('category'));
     }
 
@@ -73,9 +81,10 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit($id)
     {
-        //
+        $category = Category::find($id);
+        return view('admin.pages.category.edit', compact('category'));
     }
 
     /**
@@ -85,9 +94,28 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, $id)
     {
-        //
+        Validator::make($request->all(), [
+            'image' => 'max:300',
+        ])->validate();
+        $category = Category::find($id);
+        $category->name = $request->name;
+        $category->slug = $request->slug;
+        $category->description = $request->description;
+        if($request->hasFile('image')){
+            $path = 'assets/uploads/category/' . $category->image;
+            if(File::exists($path)){
+                File::delete($path);
+            }
+            $file = $request->file('image');
+            $ext = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $ext;
+            $file->move('assets/uploads/category', $filename);
+            $category->image = $filename;
+        }
+        $category->update();
+        return redirect('category')->with('success', 'Edit successfully');
     }
 
     /**
@@ -108,4 +136,5 @@ class CategoryController extends Controller
         $category->delete();
         return redirect('category')->with('success','Deleted success');
     }
+
 }

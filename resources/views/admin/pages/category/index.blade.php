@@ -10,7 +10,17 @@
                             <i class="zmdi zmdi-plus"></i>add item</button></a>
                 </div>
             </div>
-            <div class="table-responsive table-responsive-data2">
+            <div id = 'tool' class="tool">
+                <form class="form-header" action="{{url('category')}}" method="GET">
+                    <input class="au-input au-input--xl" type="text" name="search" placeholder="Search for datas ..." />
+                    <button class="au-btn--submit" type="submit">
+                        <i class="zmdi zmdi-search"></i>
+                    </button>
+                </form>
+                <a href="{{ url('category') }}"> <button class="au-btn--submit bg-danger">reset</button></a>
+            </div>
+
+            <div class="table-responsive table-responsive-data2 mt-5">
                 <table class="table table-data2">
                     <thead>
                         <tr>
@@ -38,11 +48,14 @@
                                    {{ $cate->description }}
                                 </td>
                                 <td>
+                                    {{ $cate->created_at }}
+                                 </td>
+                                <td>
                                     <div class="table-data-feature">
-                                        <button class="item" data-toggle="tooltip" data-placement="top"
+                                        <a href="{{ url('category/' . $cate->id . '/edit') }}"><button class="item" data-toggle="tooltip" data-placement="top"
                                             title="Edit">
                                             <i class="zmdi zmdi-edit"></i>
-                                        </button>
+                                        </button></a>
                                         <form method="POST" action="{{ url('category/' . $cate->id) }}">
                                             @method('DELETE')
                                             @csrf
@@ -57,6 +70,8 @@
                     </tbody>
                 </table>
             </div>
+            {{ $category->links() }}
+
             <!-- END DATA TABLE -->
         </div>
     </div>
